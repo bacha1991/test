@@ -1,4 +1,8 @@
 import React, { useReducer, useEffect } from "react";
+import {
+	getHistoryFromStorage,
+	setHistoryToStorage
+} from './../storeModule';
 
 const ADD_TO_HISTORY = 'addToHistory';
 const REMOVE_FROM_HISTORY = 'removeFromHistory';
@@ -6,7 +10,9 @@ const REMOVE_FROM_HISTORY = 'removeFromHistory';
 const reducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_HISTORY:
-    	return [action.payload.id, ...state];
+    	const activeVideo = action.payload.id;
+    	
+    	return !state.includes(activeVideo) ? [activeVideo, ...state] : state;
 	case REMOVE_FROM_HISTORY:
     	return state.reduce((memo, id) => action.payload.id === id
     		? memo
@@ -16,10 +22,7 @@ const reducer = (state, action) => {
   }
 };
 
-const getHistoryFromStorage = () => JSON.parse(sessionStorage.getItem('history'));
-const setHistoryToStorage = data => sessionStorage.setItem('history', JSON.stringify(data));
-
-export default ({ activeVideo }) => {
+export default ({ activeVideo, getVideoFromHistory }) => {
 	const initialState = getHistoryFromStorage() || [];
 	const [history, dispatch] = useReducer(reducer, initialState);
 	const playVideo = id => dispatch({ type: ADD_TO_HISTORY, payload: {id} });
