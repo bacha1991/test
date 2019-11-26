@@ -1,5 +1,5 @@
-const API_KEY = "AIzaSyDv4mtYzPTxevqmvSB1f9-2ZGfwx7uBV_g";
-const CLIENT_ID = "81870856510-edbij8odphv3ocgva5fspmli9lfhlr3o.apps.googleusercontent.com";
+const API_KEY = "";
+const CLIENT_ID = ""; // https://console.developers.google.com/apis/credentials?project=spry-gateway-260210
 const APIS_GOOGLE_URL = 'https://apis.google.com/js/api.js';
 
 let gapi;
