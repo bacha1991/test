@@ -1,6 +1,6 @@
 .searchWrapper {
 	position: relative;
-	width: 50vw;
+	width: 50%;
 	margin: auto;
 }
 
@@ -29,6 +29,9 @@
 
 .searchResult li {
 	padding-top: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .searchResult li:last-child {
@@ -43,19 +46,27 @@
     height: 90px;
 }
 
-.videoTitle {
-	margin: 0 0.5em;
-	max-width: calc(90% - 120px - 1em);
-    display: inline-block;
-    font-weight: bold;
+.searchResultTitle {
+    max-width: 100%;
+    margin-left: 0.5em;
+    cursor: pointer;
 }
 
-.playBtnWrapper {
-	width: 10%;
-	display: inline-block;
-	text-align: right;
+.searchResulCol_1 {
+    width: 120px;
 }
 
-.playBtnWrapper button {
-	cursor: pointer;
+.searchResulCol_2 {
+    width: calc(90% - 120px);
+}
+
+.searchResulCol_3 {
+    width: calc(10%);
+    text-align: right;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .searchWrapper {
+        width: 100%;
+    }
 }

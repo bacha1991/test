@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-
 import AppWrapper from "./AppWrapper";
-
 import { loadGapi, authorizeToGapi } from './gapiModule';
 
 import "./styles.css";
@@ -19,9 +17,7 @@ const App = () => {
 	return (
 		<div className="App">
 			{
-				googleApiLoaded
-					? <AppWrapper />
-					: <div>Loading...</div>
+				googleApiLoaded ? <AppWrapper /> : <div>Loading...</div>
 			}
 		</div>
 	);

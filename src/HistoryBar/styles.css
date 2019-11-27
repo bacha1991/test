@@ -1,0 +1,36 @@
+.historyBlock {
+    width: 21%;
+    display: inline-block;
+}
+
+.historyBlock ul {
+    list-style: none;
+    text-align: left;
+    border: 1px solid #dfdfdf;
+    padding: 0 0.5em;
+    margin: 0;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.historyBlock li {
+    padding-top: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.historyBlock li:last-child {
+    padding-bottom: 0.5em;
+}
+
+.historyBlockItem {
+    cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .historyBlock {
+        width: 100%;
+        display: block;
+    }
+}

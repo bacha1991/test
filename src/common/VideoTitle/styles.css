@@ -1,0 +1,18 @@
+.videoTitleWrapper {
+	max-width: 80%;
+	display: inline-block;
+}
+
+.videoTitle {
+    font-weight: bold;
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.videoTitle.active {
+    text-decoration: underline;
+}

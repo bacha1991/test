@@ -1,0 +1,18 @@
+.videoBlock {
+	width: 70%;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 3%;
+}
+
+.VideoPlayerIframe {
+	width: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+	.videoBlock {
+		width: 100%;
+		margin: 0;
+		display: block;
+	}
+}
