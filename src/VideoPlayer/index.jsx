@@ -2,8 +2,11 @@ import React from 'react';
 import './styles.css';
 import VideoTitle from './../common/VideoTitle';
 
-export default ({ activeVideo = {} }) => {
-	const { id = '71h8MZshGSs', title } = activeVideo;
+export default ({ activeVideo }) => {
+	if (!activeVideo) {
+		return null;
+	}
+	const { id, title } = activeVideo;
 
 	return <section className='videoBlock'>
 		<h2><VideoTitle>{title}</VideoTitle></h2>

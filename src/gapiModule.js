@@ -21,7 +21,10 @@ export const getVideolist = ({ q } = {}) => {
         // Handle the results here (response.result has the parsed body).
         return response.result;
       },
-      (err) => console.error("Execute error", err)
+      (err) => {
+        console.error("Execute error", err);
+        return Promise.reject(err.result);
+      }
     );
 };
 

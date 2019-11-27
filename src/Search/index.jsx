@@ -5,12 +5,21 @@ import { getVideolist } from './../gapiModule';
 
 import './styles.css';
 
+const withErrorMsg = WrappedComponent => ({ errorMsg, ...other }) => {
+	return errorMsg
+		? <h3 dangerouslySetInnerHTML={{__html: errorMsg}} />
+		: <WrappedComponent {...other} />;
+};
+const EnhancedVideosList = withErrorMsg(VideosList);
+
 export default forwardRef(({ playVideo, isAppClicked }, ref) => {
 	const [list, updateList] = useState([]);
+	const [errorMsg, setErrorMsg] = useState();
 
 	const removeList = value => !value && updateList([]);
-	const getVideos = query => getVideolist({ q: query })
-		.then(({ items }) => updateList(items.filter(item => item.id.kind === 'youtube#video')));
+	const getList = query => getVideolist({ q: query })
+		.then(resp => updateList(resp.items.filter(item => item.id.kind === 'youtube#video')))
+		.catch(resp => setErrorMsg(resp.error.message));
 	const handlePlayVideo = (data) => {
 		playVideo(data);
 		removeList();
@@ -21,9 +30,10 @@ export default forwardRef(({ playVideo, isAppClicked }, ref) => {
 	return <div className='searchWrapper' ref={ref}>
 		<SearchField
 			onChange={removeList}
-			submitCallback={getVideos} />
-		<VideosList
+			submitCallback={getList} />
+		<EnhancedVideosList
 			playVideo={handlePlayVideo}
-			list={list} />
+			list={list}
+			errorMsg={errorMsg} />
 	</div>;
 });

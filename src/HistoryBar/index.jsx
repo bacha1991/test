@@ -14,7 +14,7 @@ export default ({ activeVideo, playVideo }) => {
 	}, [activeVideo]);
 	useEffect(() => setHistoryToStorage(history), [history]);
 
-	return <section className='historyBlock'>
+	return !history.length ? null : <section className='historyBlock'>
 		<h2>Watch History</h2>
 		<ul>
 			{
