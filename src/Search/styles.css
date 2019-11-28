@@ -25,6 +25,7 @@
     max-height: 50vh;
     overflow: auto;
     background: #fff;
+    z-index: 1;
 }
 
 .searchResult li {
@@ -44,6 +45,14 @@
 
 .searchResult li img {
     height: 90px;
+}
+
+.searchResultOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .searchResultTitle {

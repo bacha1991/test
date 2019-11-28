@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from "react";
+import React, { useState } from "react";
 import SearchField from './SearchField';
 import VideosList from './VideosList';
 import { getVideolist } from './../gapiModule';
@@ -10,9 +10,8 @@ const withErrorMsg = WrappedComponent => ({ errorMsg, ...other }) => {
 		? <h3 dangerouslySetInnerHTML={{__html: errorMsg}} />
 		: <WrappedComponent {...other} />;
 };
-const EnhancedVideosList = withErrorMsg(VideosList);
 
-export default forwardRef(({ playVideo, isAppClicked }, ref) => {
+const withGetVideoListApi = WrappedComponent => ({ playVideo }) => {
 	const [list, updateList] = useState([]);
 	const [errorMsg, setErrorMsg] = useState();
 
@@ -24,16 +23,30 @@ export default forwardRef(({ playVideo, isAppClicked }, ref) => {
 		playVideo(data);
 		removeList();
 	};
+	const newProps = { list, errorMsg, removeList, getList, handlePlayVideo };
 
-	useEffect(() => removeList(), [isAppClicked]);
+	return <WrappedComponent {...newProps} />;
+};
 
-	return <div className='searchWrapper' ref={ref}>
+const EnhancedVideosList = withErrorMsg(VideosList);
+
+const SearchBlock = ({
+	list,
+	errorMsg,
+	removeList,
+	getList,
+	handlePlayVideo
+}) => {
+	return <div className='searchWrapper'>
 		<SearchField
 			onChange={removeList}
 			submitCallback={getList} />
 		<EnhancedVideosList
 			playVideo={handlePlayVideo}
 			list={list}
+			removeList={removeList}
 			errorMsg={errorMsg} />
 	</div>;
-});
+};
+
+export default withGetVideoListApi(SearchBlock);

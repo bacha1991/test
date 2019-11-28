@@ -15,8 +15,7 @@ export default ({ activeVideo }) => {
 			title='video'
 			src={`https://www.youtube.com/embed/${id}?enablejsapi=1`}
 			frameBorder='0'
-			className='VideoPlayerIframe'
-			style={{border: "solid 4px #37474F"}}>
+			className='VideoPlayerIframe'>
 	    </iframe>
 	</section>
 };
